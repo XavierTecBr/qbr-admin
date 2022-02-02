@@ -8,9 +8,21 @@ AddEventHandler('qbr-admin:tpway', function(source)
 
     local x,y,z = table.unpack(GetWaypointCoords())
     local player = PlayerPedId()
-   
-    SetEntityCoordsNoOffset(player, x, y, z, 0, 0, 1)
 
+    Citizen.CreateThread(function()
+
+		Wait(0)
+        SetCinematicModeActive(true)
+		DoScreenFadeOut(500)
+		Wait(1000)
+		
+        SetEntityCoordsNoOffset(player, x, y, z, 0, 0, 1)
+
+		Wait(7000)
+		DoScreenFadeIn(500)		
+		SetCinematicModeActive(false)
+
+	end)
 end)
 
 RegisterNetEvent('qbr-admin:cds')
